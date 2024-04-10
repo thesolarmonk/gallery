@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎨 A Gallery of Creative Code</title>
+
+    <!-- Swiper Library -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!-- CSS Reset -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css">
+
+    <!-- Swiper Styles -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main>
+        <!-- Slider main container -->
+        <div class="swiper">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+
+                <!-- Slides -->
+
+                <div class="swiper-slide" id="title">
+                    <h1>A Gallery of<br>Creative Code Stuff<br><br>🎨</h1>
+                    <br><br>
+                    <br><br>
+                    <h2>by Tanuj</h2>
+                </div>
+
+                <div class="swiper-slide" id="sketch-1">
+                    <iframe class="sketch" src="" data-src="sketch/shimmer" frameborder="0" width="500" height="500"></iframe>
+                    <figcaption>fig 1. shimmer</figcaption>
+                </div>
+
+                <div class="swiper-slide" id="sketch-2">
+                    <iframe class="sketch" src="" data-src="sketch/bauhaus" frameborder="0" width="500" height="500"></iframe>
+                    <figcaption>fig 2. bauhaus</figcaption>
+                </div>
+
+                <div class="swiper-slide" id="sketch-3">
+                    <iframe class="sketch" src="" data-src="sketch/gameboy" frameborder="0" width="500"
+                        height="500"></iframe>
+                        <figcaption>fig 3. gameboy</figcaption>
+                </div>
+
+                <div class="swiper-slide" id="sketch-4">
+                    <iframe class="sketch" src="" data-src="sketch/starry-night" frameborder="0" width="500"
+                        height="500"></iframe>
+                    <figcaption>fig 4. starry night</figcaption>
+                </div>
+
+                <div class="swiper-slide" id="sketch-5">
+                    <iframe class="sketch" src="" data-src="sketch/impressionist" frameborder="0" width="500" height="500"></iframe>
+                    <figcaption>fig 5. impressionist</figcaption>
+                </div>
+
+                <div class="swiper-slide" id="sketch-6">
+                    <iframe class="sketch" src="" data-src="sketch/slit-scan" frameborder="0" width="500" height="500"></iframe>
+                    <figcaption>fig 6. slit-scan</figcaption>
+                </div>
+
+                <div class="swiper-slide" id="sketch-7">
+                    <iframe class="sketch" src="" data-src="sketch/painting-with-a-painting" frameborder="0" width="500" height="500"></iframe>
+                    <figcaption>fig 7. painting with a painting</figcaption>
+                </div>
+
+                <div class="swiper-slide" id="sketch-8">
+                    <iframe class="sketch" src="" data-src="sketch/snake" frameborder="0" width="500"
+                        height="500"></iframe>
+                    <figcaption>fig 8. snake</figcaption>
+                </div>
+
+            </div>
+            <!-- Pagination -->
+            <div class="swiper-pagination"></div>
+
+            <!-- Navigation Buttons -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+    </main>
+
+    <script>
+        const swiper = new Swiper('.swiper', {
+                // Basic Settings
+                direction: 'horizontal',
+                loop: false,
+
+                // Pagination
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+
+                // Navigation arrows
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+
+                // Mouse Drag
+                simulateTouch: false,
+
+                // Keyboard Navigation
+                keyboard: {
+                    enabled: true,
+                },
+            });
+
+            // Custom Code: only "load" a P5.js sketch when navigating to a slide
+            swiper.on('slideChange', () => {
+                // unload the sketch on the previous slide
+                const prev_iframe = swiper.slides[swiper.previousIndex].querySelector('.sketch');
+                if(prev_iframe) prev_iframe.src = "";
+
+                // load the sketch on the new slide
+                const iframe = swiper.slides[swiper.activeIndex].querySelector('.sketch');
+                if (iframe) iframe.src = iframe.getAttribute('data-src');
+            });
+    </script>
+</body>
+</html>
